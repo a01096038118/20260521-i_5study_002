@@ -12,10 +12,10 @@
 flag = True
 members = {}
 
-
+import member
 
 while flag:
-    selectedMenuNum = int(input('1.회원가입  2.로그인   3.나의 회원 정보 출력  4.모든 회원 정보 출력  5. 회원 탈퇴 6. 회원정보 수정 7. ID/PW 찾기 99.종료'))
+    selectedMenuNum =member.getSelectedMenuNum()
     if selectedMenuNum == 1:
         
         uID = input('회원ID:  ')
@@ -25,13 +25,21 @@ while flag:
             if '&' not in uPW:  # True
                 print('사용할 수 없는 비밀번호 입니다. 다시 작성해주세요.')
              
+            else:
+                break
+        while True:    
+            uEMAIL = input('회원EMAIL:  ')
+            if '@' not in uEMAIL:  
+                print('사용할 수 없는 이메일 입니다. 다시 작성해주세요.')
 
             else:
                 break
-            
-        uEMAIL = input('회원EMAIL:  ')
-        uPHONE = input('회원PHONE:  ')
-        print('회원가입 성공')
+        while True:
+            uPHONE = input('회원PHONE:  ')
+            if '-' not in uPHONE:  
+                print('사용할 수 없는 번호입니다. 다시 작성해주세요.')
+            else:    
+                break
 
         members[uID] = {
             'uID': uID,
@@ -39,19 +47,23 @@ while flag:
             'uEMAIL': uEMAIL,
             'uPHONE': uPHONE
             }
+        print('회원가입 성공')
             
     if selectedMenuNum == 2:
-            uID = input('회원ID: ')
-            uPW = input('회원PW: ')
+                while True:
+                    uID = input('회원ID: ')
+                    if uID not in members:
+                        print('잘못입력 하셨습니다. 다시 입력하세요.')
+                    else:
+                        break
 
-            if uID in members:
-                uInfo = members[uID]
-
-                if uInfo ['uPW'] == uPW:
-                     print('로그인 성공')
-
-                else:
-                     print('로그인 실패')
+                while True:    
+                    uPW = input('회원PW: ')
+                    if uPW not in members:
+                        print('잘못입력 하셨습니다. 다시 입력하세요.')
+                    else:
+                        print('로그인 성공')  
+                   
 
     if selectedMenuNum == 3:
         uID = input('회원ID: ')
