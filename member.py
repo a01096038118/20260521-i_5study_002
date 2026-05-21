@@ -6,25 +6,25 @@ def getSelectedMenuNum():
     return selectedMenuNum
 
 def inputUserData():
-    uID = input('회원ID: ')
-    uPW = input('회원PW (특수문자 &를 사용하여 입력하세요.): ')
-    uEMAIL = input('회원EMAIL:  ')
-    uPHONE = input('회원PHONE:  ')
+    uId = input('회원ID: ')
+    uPw = input('회원PW (특수문자 &를 사용하여 입력하세요.): ')
+    uEmail = input('회원EMAIL:  ')
+    uPhone = input('회원PHONE:  ')
 
-    return uID, uPW, uEMAIL, uPHONE
+    return uId, uPw, uEmail, uPhone
 
-def setNewMember(uID, uPW, uEMAIL, uPHONE):
-    members[uID] = {
-                'uID': uID,
-                'uPW': uPW,
-                'uEMAIL': uEMAIL,
-                'uPHONE': uPHONE
+def setNewMember(uId, uPw, uEmail, uPhone):
+    members[uId] = {
+                'uId': uId,
+                'uPw': uPw,
+                'uEmail': uEmail,
+                'uPhone': uPhone
                 }
 
-def checkLogin(uID, uPW):
-    if uID in members:
-        uInfo = members[uID]
-        if uInfo ['uPW'] == uPW:
+def checkLogin(uId, uPw):
+    if uId in members:
+        uInfo = members[uId]
+        if uInfo ['uPw'] == uPw:
             return True
 
     return False
@@ -37,3 +37,9 @@ def printMembersInfo(members):
     for key, value in members.items():
             print(f'{key}: {value}')
 
+def findMember(uEmail, uPhone):
+    for key, value in members.items():
+
+        if value['uEmail'] == uEmail and value['uPhone'] == uPhone:
+            return key, value
+    return None, None
