@@ -5,13 +5,16 @@ def getSelectedMenuNum():
 
     return selectedMenuNum
 
-def inputUserData():
+def inputUserLoginData():
     uId = input('회원ID: ')
     uPw = input('회원PW (특수문자 &를 사용하여 입력하세요.): ')
+    return uId, uPw
+
+def inputFindData():
     uEmail = input('회원EMAIL:  ')
     uPhone = input('회원PHONE:  ')
 
-    return uId, uPw, uEmail, uPhone
+    return uEmail, uPhone
 
 def setNewMember(uId, uPw, uEmail, uPhone):
     members[uId] = {
