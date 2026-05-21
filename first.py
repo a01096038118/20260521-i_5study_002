@@ -10,7 +10,7 @@
 '''
 
 flag = True
-setNewMember = {}
+members = {}
 
 
 
@@ -33,7 +33,7 @@ while flag:
         uPHONE = input('회원PHONE:  ')
         print('회원가입 성공')
 
-        setNewMember[uID] = {
+        members[uID] = {
             'uID': uID,
             'uPW': uPW,
             'uEMAIL': uEMAIL,
@@ -44,8 +44,8 @@ while flag:
             uID = input('회원ID: ')
             uPW = input('회원PW: ')
 
-            if uID in setNewMember:
-                uInfo = setNewMember[uID]
+            if uID in members:
+                uInfo = members[uID]
 
                 if uInfo ['uPW'] == uPW:
                      print('로그인 성공')
@@ -57,8 +57,8 @@ while flag:
         uID = input('회원ID: ')
         uPW = input('회원PW: ')
 
-        if uID in setNewMember:
-             uInfo = setNewMember[uID]
+        if uID in members:
+             uInfo = members[uID]
              if uInfo ['uPW'] == uPW:
                   print('로그인 성공')
 
@@ -66,38 +66,39 @@ while flag:
                        print(f'{key}: {value}')
 
     if selectedMenuNum == 4:
-        for key, value in setNewMember.items():
+        for key, value in members.items():
             print(f'{key}: {value}')
 
     if selectedMenuNum == 5:
         uID = input('삭제할 회원ID 입력: ')
         uPW = input('회원PW 입력: ')
          
-        if uID in setNewMember:
-            uInfo = setNewMember[uID]
-            while True:
-                if uInfo ['uPW'] == uPW:
-                    del setNewMember[uID]
-                    print('회원탈퇴 되었습니다.')
-
-                else: 
-                    print('비밀번호를 다시 입력해주세요.')
+        if uID in members:
+            uInfo = members[uID]
+            if uInfo ['uPW'] == uPW:
+                del members[uID]
+                print('회원탈퇴 되었습니다.')
 
     if selectedMenuNum == 6:
         uID = input('회원ID: ')
-        uPW = input('회원PW: ')
-        if uID in setNewMember:
-             uInfo = setNewMember[uID]
-             if uInfo ['uPW'] == uPW:
-                  for key, value in uInfo.items():
-                    print(f'{key}: {value}')  
+        while True:
+            uPW = input('회원PW: ')
+            
+            if uID in members:
+                uInfo = members[uID]
+                if uInfo ['uPW'] == uPW:
 
-                    updateKey = input('수정할 목록 입력: ')
-                    updateValue = input('새로운 값 입력: ')
+            # else: 
+            #     print('비밀번호를 다시 입력해주세요.')
+            #     for key, value in uInfo.items():
+            #         print(f'{key}: {value}')  
 
-                    uInfo[updateKey] = updateValue
-                    for key, value in uInfo.items():
-                        print(f'{key}: {value}') 
+            #         updateKey = input('수정할 목록 입력: ')
+            #         updateValue = input('새로운 값 입력: ')
+
+            #         uInfo[updateKey] = updateValue
+            #         for key, value in uInfo.items():
+            #             print(f'{key}: {value}') 
 
     if selectedMenuNum == 99:
         print('프로그램을 종료합니다. ')
